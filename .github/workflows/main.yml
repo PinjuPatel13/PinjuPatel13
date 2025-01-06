@@ -13,7 +13,7 @@ on:
 
 jobs:
   generate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Updated to Ubuntu 24.04 (you can change this to ubuntu-22.04 if needed)
     timeout-minutes: 10
 
     steps:
