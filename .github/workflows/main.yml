@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3: Ensure the output branch exists
+      # Step 3: Ensure Output Branch Exists
       - name: Ensure Output Branch Exists
         run: |
           git fetch origin
