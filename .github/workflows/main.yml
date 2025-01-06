@@ -11,9 +11,13 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # Explicitly give permission to write to repository
+
 jobs:
   generate:
-    runs-on: ubuntu-24.04  # Updated to Ubuntu 24.04 (you can change this to ubuntu-22.04 if needed)
+    runs-on: ubuntu-24.04  # Using Ubuntu 24.04
+
     timeout-minutes: 10
 
     steps:
@@ -34,6 +38,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 3: Deploy to Output Branch
+      - name: Ensure Output Branch Exists
+        run: |
+          git fetch origin
+          git branch -r | grep -q "origin/output" || git checkout --orphan output
+          git reset --hard
+          git clean -fd
+
       - name: Deploy to Output Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
